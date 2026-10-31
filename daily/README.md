@@ -1,48 +1,106 @@
-# daily 使用说明
+# daily：每天手写代码 + 学习日志
 
-`daily/` 是一个独立的 uv 项目，所有每日练习共享 `daily/.venv`。这样编辑器能选解释器、自动补全，不会标红。
+`daily/` 是你每天**亲手写** Python/C++ 的地方，也是学习日志；它不是教程仓库。
 
-## 常用命令
+## 目录
 
-```bash
-cd ~/robot-learning-log/daily
-
-# 加包（只改 daily 的环境，不影响 projects）
-uv add scipy
-uv add --dev pytest ruff
-
-# 跑当天脚本
-uv run python 2026-11-01/python/ex01.py
-
-# 跑 daily 里的测试
-uv run pytest 2026-11-01/python -q
+```text
+daily/2026-11-01/
+├── README.md      # 今天跟的教程/项目、写了什么、测了什么、卡住什么
+├── python/        # 今天手写的 Python
+└── cpp/           # 今天手写的 C++
 ```
 
-## 一次性包（不想改 daily 依赖时）
+多天项目可以放在起始日期的目录里，例如 `daily/2026-11-04/python/traj_stats/`。
+
+## 每天 3 小时
+
+| 时间 | 动作 |
+|---|---|
+| 30 min | 读教程或开源代码，只读一小节/一个函数 |
+| 90 min | 关掉教程，从空文件手写 |
+| 30 min | 写测试、调试、对比输出 |
+| 15 min | 写 daily README、commit |
+
+## 每天流程
 
 ```bash
 cd ~/robot-learning-log
-env -u PYTHONPATH uv run --with seaborn python daily/2026-11-01/python/plot.py
+./scripts/new_day.sh
+
+# 在 daily/YYYY-MM-DD/README.md 写：来源、链接、目标
+# 在 python/ 和 cpp/ 里手写
+# 跑测试
+git add daily scripts notes
+git commit -m "day: $(date +%F) - 主题"
+git push
 ```
 
-`--with` 用临时环境，不修改 `daily/pyproject.toml`；适合试一个包，不适合长期开发。
+## 2–3 周安排
 
-## 为什么不给每个日期建 .venv
+| 天 | 主线 | 教程/参考 | 手写内容 |
+|---|---|---|---|
+| 1 | Python 函数/数据结构 | CS50P weeks 0–1；Exercism | 5 个函数 + 5 道 Exercism |
+| 2 | 文件/异常 | CS50P 文件与异常 | CSV 读取器 + pytest |
+| 3 | 类/模块/typing | CS50P OOP | `Record`/`Stats` 类 + 测试 |
+| 4 | CLI/argparse | CS50P；pytest | `traj_stats` CLI 雏形 |
+| 5 | 错误处理/重构 | 自己的代码 | CLI 完整版 + 10 个测试 |
+| 6 | 复盘 + 几何 | `exercises/r1/01_se2` | 手写 SE(2) + 13 个测试 |
+| 7 | C++ 工具链 | learncpp 1–2 | CMake + GoogleTest hello |
+| 8 | 指针/引用/STL | learncpp 3–6；Exercism | `stats.cpp` 函数 + 5 题 |
+| 9 | 类/RAII | learncpp 7–10 | `Record`/`Stats` 类 |
+| 10 | STL/文件 | learncpp 11–13 | C++ `traj_stats` |
+| 11 | CMake/测试/ASan | GoogleTest | 10 个测试 + ASan |
+| 12 | 重构/benchmark | 自己的代码 | 与 Python 输出逐行对比 |
+| 13 | SE(2)/SE(3) | `exercises/r1/01_se2`、`02_se3` | Python 几何库 |
+| 14 | 四元数 | `exercises/r1/03_quaternion` | 互转/乘法 + 测试 |
+| 15 | C++ Vector/Matrix | `exercises/r3/01_vector`、`02_matrix` | 规则五 + 运算符 |
+| 16 | pybind11 | `exercises/r4/01_pybind11` | C++ 类暴露给 Python |
+| 17 | 综合 | 自己的代码 | C++ 矩阵 + Python CLI |
+| 18 | 复盘 | 一个 300 行开源文件 | 从记忆重写一个模块 + 读代码笔记 |
 
-- 一天一个 `.venv` 会有几十个环境，安装慢、占空间、难管理；
-- VS Code 一次只能选一个解释器，几十个环境反而更乱；
-- `daily` 一个共享环境 + `uv.lock` 足够；需要冲突版本时再用 `--with` 或单独项目。
+只有 2 周：做第 1–12 天；第 13–18 天留到第 3 周。
 
-## 什么时候升级成项目
+## 和 `exercises/` 的关系
 
-如果某个练习连续做 3 天以上，或需要固定依赖版本/多个源文件/测试，就把它移到 `projects/`：
+- `daily/`：主练习区，手写代码 + 日志；
+- `exercises/`：可选题目，包含 README、骨架、失败测试、参考答案；
+- 推荐：先读 exercise 的 README，关掉，在 `daily/` 里从空文件写；写完再对照 `solution/`；
+- 不要两边重复实现同一个东西。
 
-```bash
-cd projects
-uv init --package my_experiment
-cd my_experiment
-uv add numpy
-uv add --dev pytest
+## 和开源项目的关系
+
+每天选一个**小目标**，不要 clone 一个大仓库就开始读：
+
+- Python：CS50P 一节、Exercism 一题、PythonRobotics 一个函数；
+- C++：learncpp 一节、Exercism 一题、CppRobotics 一个算法；
+- 读一个函数/一节，关掉，凭记忆写；
+- 不复制整段代码；写完用测试或输出对比；
+- 卡住超过 2 天就简化问题，不要硬耗。
+
+## 每天 README 模板
+
+`scripts/new_day.sh` 会自动生成：
+
+```markdown
+# 2026-11-01
+
+## 今天跟的教程/项目
+- 来源：
+- 链接：
+- 目标：
+
+## 今天手写
+- python/
+- cpp/
+
+## 测试结果
+- pytest：
+- ctest：
+
+## 卡住
+-
+
+## 明天第一件事
+-
 ```
-
-然后按项目方式管理。

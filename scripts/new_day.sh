@@ -12,13 +12,24 @@ if [[ ! -f "$dir/README.md" ]]; then
   cat > "$dir/README.md" <<EOF
 # $day
 
-## 今天做什么
+## 今天跟的教程/项目
+- 来源：
+- 链接：
+- 目标：
 
-## 学到什么
+## 今天手写
+- python/
+- cpp/
 
-## 卡住什么
+## 测试结果
+- pytest：
+- ctest：
+
+## 卡住
+-
 
 ## 明天第一件事
+-
 EOF
 fi
 

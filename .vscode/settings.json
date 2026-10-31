@@ -1,7 +1,10 @@
 {
   "python.defaultInterpreterPath": "${workspaceFolder}/daily/.venv/bin/python",
   "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.extraPaths": ["daily", "projects/r1-robomath/src"],
+  "python.analysis.extraPaths": [
+    "daily",
+    "projects/r1-robomath/src"
+  ],
   "cmake.exportCompileCommands": true,
   "C_Cpp.default.compileCommands": "${workspaceFolder}/build/r3/compile_commands.json",
   "files.watcherExclude": {
@@ -15,5 +18,11 @@
     "**/build/**": true,
     "**/__pycache__/**": true
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "ROS2.distro": "humble",
+  "cmake.sourceDirectory": "/home/ryder/robot-learning-log/projects/r3-minilinalg",
+  "python.autoComplete.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ]
 }
