@@ -1,0 +1,19 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/daily/.venv/bin/python",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.extraPaths": ["daily", "projects/r1-robomath/src"],
+  "cmake.exportCompileCommands": true,
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/r3/compile_commands.json",
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/.venv/**": true,
+    "**/build/**": true,
+    "**/__pycache__/**": true
+  },
+  "search.exclude": {
+    "**/.venv/**": true,
+    "**/build/**": true,
+    "**/__pycache__/**": true
+  },
+  "editor.formatOnSave": true
+}

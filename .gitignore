@@ -1,0 +1,41 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+
+# C++
+build/
+cmake-build/
+*.o
+*.a
+*.so
+compile_commands.json
+
+# 数据与产物
+data/
+outputs/
+logs/
+*.pt
+*.onnx
+*.mp4
+*.bag
+*.mcap
+
+# 密钥
+.env
+.env.*
+*.key
+*.pem
+
+# IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
