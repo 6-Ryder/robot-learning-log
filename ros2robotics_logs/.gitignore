@@ -1,0 +1,14 @@
+# colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# VS Code 本地覆盖
+.vscode/*.local.json

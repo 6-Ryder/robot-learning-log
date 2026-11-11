@@ -1,0 +1,21 @@
+{
+  "python.defaultInterpreterPath": "/home/ryder/.venvs/ros-humble/bin/python",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "python.terminal.activateEnvironment": true,
+  "ROS2.distro": "humble",
+  "files.watcherExclude": {
+    "**/build/**": true,
+    "**/install/**": true,
+    "**/log/**": true,
+    "**/__pycache__/**": true
+  },
+  "search.exclude": {
+    "**/build/**": true,
+    "**/install/**": true,
+    "**/log/**": true
+  }
+}

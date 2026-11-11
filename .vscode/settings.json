@@ -19,10 +19,5 @@
     "**/__pycache__/**": true
   },
   "editor.formatOnSave": true,
-  "ROS2.distro": "humble",
-  "cmake.sourceDirectory": "/home/ryder/robot-learning-log/projects/r3-minilinalg",
-  "python.autoComplete.extraPaths": [
-    "/opt/ros/humble/lib/python3.10/site-packages",
-    "/opt/ros/humble/local/lib/python3.10/dist-packages"
-  ]
+  "cmake.sourceDirectory": "/home/ryder/robot-learning-log/projects/r3-minilinalg"
 }

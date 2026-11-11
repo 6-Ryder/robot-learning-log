@@ -6,6 +6,7 @@
 
 - `daily/`：每天手写的 Python/C++ 代码与学习日志（主练习区）
 - `projects/`：完整项目（独立环境）
+- `ros2robotics_logs/`：ROS 2 Humble 练习区（独立 VS Code 工作区，见该目录 README）
 - `exercises/`：带骨架、失败测试和参考答案的引导单元（可选题目）
 - `notes/`：跨天主题笔记
 - `scripts/`：日常自动化
@@ -40,11 +41,9 @@ cd ../..
 - 写 `projects/r1-robomath/`：打开该项目文件夹，选它自己的 `.venv`。
 - 写 C++：打开仓库根目录或 `projects/r3-minilinalg/`，CMake Tools 会自动读 `build/r3/compile_commands.json`。
 
-## ROS PYTHONPATH 说明
+## direnv 与 PYTHONPATH
 
-本机 `~/.bashrc` 全局 `source /opt/ros/humble/setup.bash`，会把 Python 3.10 的 ROS 包放进 `PYTHONPATH`。在 Python 3.13 的 uv 环境里，pytest 会误加载 ROS 的 `launch_testing` 插件并报 `No module named 'yaml'`。
-
-仓库根目录有 `.envrc`，进入目录时自动清掉 ROS 变量。第一次使用：
+仓库根目录有 `.envrc`，进入目录时自动清掉外部环境泄漏进来的 `PYTHONPATH` 和 pytest 插件变量。第一次使用：
 
 ```bash
 cd ~/robot-learning-log

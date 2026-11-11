@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# 运行 ROS 2 Python 脚本：基础环境 + 本工作区 overlay。
+# 用法：./scripts/ros <script.py> 或 ./scripts/ros -m pytest
+PYTHON="$HOME/.venvs/ros-humble/bin/python"
+WS="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+
+unset PYTHONPATH PYTHONHOME VIRTUAL_ENV
+exec bash --noprofile --norc -c '
+  set -e
+  source /opt/ros/humble/setup.bash
+  if [[ -f "$1" ]]; then
+    source "$1"
+  fi
+  shift
+  exec "$@"
+' _ "$WS/install/setup.bash" "$PYTHON" "$@"
