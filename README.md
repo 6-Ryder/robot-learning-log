@@ -1,64 +1,59 @@
 # Robot Learning Log
 
-记录每天学习机器人开发、Python/C++ 编程的练习与笔记。
+机器人开发与 Python/C++ 学习工作区，包含每日练习、独立项目和 ROS 2 实验。
 
-## 目录
+| 目录 | 用途 |
+|---|---|
+| `daily/` | 每日代码与日志，共享 Python 3.13 环境 |
+| `exercises/` | 引导练习、测试与参考答案，使用 daily 环境 |
+| `projects/` | 独立项目，各自管理环境 |
+| `ros2robotics_logs/` | ROS 2 Humble / MoveIt 2，使用 Python 3.10 |
+| `robotics_courses/` | 课程参考源码，获取方法见目录 README |
+| `notes/` | 笔记与检查记录 |
 
-- `daily/`：每天手写的 Python/C++ 代码与学习日志（主练习区）
-- `projects/`：完整项目（独立环境）
-- `ros2robotics_logs/`：ROS 2 Humble 练习区（独立 VS Code 工作区，见该目录 README）
-- `exercises/`：带骨架、失败测试和参考答案的引导单元（可选题目）
-- `notes/`：跨天主题笔记
-- `scripts/`：日常自动化
+## Python
 
-## 快速开始
+需要 Git、uv；以下命令在仓库根目录执行。
 
 ```bash
-# Python 项目
-cd projects/r1-robomath
-uv sync --dev
-env -u PYTHONPATH uv run pytest -q
+./scripts/py.sh sync --locked --project daily
+./scripts/py.sh run --locked --project daily python daily/2026-11-10/ITR01.py
+./scripts/py.sh run --locked --project daily python scripts/check_daily.py
 
-# C++ 项目
-cd ../..
-./scripts/check.sh
+# 独立项目
+./scripts/py.sh sync --locked --dev --project projects/r1-robomath
+./scripts/py.sh run --locked --directory projects/r1-robomath pytest -q
 
-# 新建今天的学习目录
+# 创建当天的练习目录
 ./scripts/new_day.sh
 ```
 
-## 环境约定
+新增依赖：`./scripts/py.sh add --project daily <包名>`。提交清单与锁文件，不提交虚拟环境。
 
-- `daily/` 是一个独立 uv 项目，所有每日练习共享 `daily/.venv`；`uv add` 加常用包。
-- `projects/` 每个项目独立 `uv` 环境，互不影响。
-- 一次性试包：`env -u PYTHONPATH uv run --with <pkg> python ...`，不修改 `daily/pyproject.toml`。
-- C++：CMake + GoogleTest（FetchContent），构建目录统一在根目录 `build/`。
-- 不提交 `.venv/`、`build/`、数据、checkpoint、密钥。
+## C++
 
-## VS Code 解释器
-
-- 写 `daily/`：打开 `daily/` 文件夹，选 `daily/.venv/bin/python`。
-- 写 `projects/r1-robomath/`：打开该项目文件夹，选它自己的 `.venv`。
-- 写 C++：打开仓库根目录或 `projects/r3-minilinalg/`，CMake Tools 会自动读 `build/r3/compile_commands.json`。
-
-## direnv 与 PYTHONPATH
-
-仓库根目录有 `.envrc`，进入目录时自动清掉外部环境泄漏进来的 `PYTHONPATH` 和 pytest 插件变量。第一次使用：
+需要 CMake ≥3.20、G++ 和 GDB；首次配置会获取 GoogleTest。
 
 ```bash
-cd ~/robot-learning-log
-direnv allow
-```
-
-之后直接：
-
-```bash
-uv run --project daily python daily/2026-11-01/python/ex01.py
 ./scripts/check.sh
+./build/r3/demo
 ```
 
-如果 shell 没有 direnv，再用 `env -u PYTHONPATH` 作为兜底。
+`check.sh` 检查 r1 Python 项目，并以 Debug + ASan/UBSan 构建和测试 C++。
 
-## 进度
+## ROS 2
 
-见 [progress.md](progress.md)。
+环境准备与运行方法见 [ROS 练习区](ros2robotics_logs/README.md)。
+
+```bash
+cd ros2robotics_logs
+./scripts/ros scripts/hello_ros.py
+```
+
+## 编辑器
+
+- 普通 Python：打开 `daily/` 或具体项目目录，使用目录内的 `.venv/bin/python`。
+- C++：打开仓库根目录，先运行 `scripts/check.sh` 生成编译数据库。
+- ROS：单独打开 `ros2robotics_logs/`，使用该目录的解释器和调试配置。
+
+可选：在可信终端执行 `direnv allow`，进入仓库时清理外部 Python 路径。脚本入口不依赖 direnv。

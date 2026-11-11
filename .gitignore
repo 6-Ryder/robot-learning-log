@@ -36,8 +36,13 @@ logs/
 !.vscode/settings.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/c_cpp_properties.json
 .idea/
 .DS_Store
 
 # Files
 /编程基础2-3周训练营-Python与C++完整版-20261031.md
+
+# 独立课程克隆；来源及固定提交见 robotics_courses/README.md
+/robotics_courses/ModernRobotics/
+/robotics_courses/ModernRoboticsCpp/

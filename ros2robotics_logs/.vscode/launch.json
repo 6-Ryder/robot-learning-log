@@ -6,7 +6,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "${file}",
-      "python": "/home/ryder/.venvs/ros-humble/bin/python",
+      "python": "${env:HOME}/.venvs/ros-humble/bin/python",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
@@ -16,8 +16,19 @@
         "PYTHONPATH": "/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages",
         "ROS_DISTRO": "humble",
         "ROS_VERSION": "2",
-        "ROS_PYTHON_VERSION": "3"
+        "ROS_PYTHON_VERSION": "3",
+        "PYTHONNOUSERSITE": "1"
       }
+    },
+    {
+      "name": "ROS 2: Attach",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": {
+        "host": "127.0.0.1",
+        "port": 5678
+      },
+      "justMyCode": false
     }
   ]
 }

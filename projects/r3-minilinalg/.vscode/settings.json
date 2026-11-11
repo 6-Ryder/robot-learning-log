@@ -1,4 +1,5 @@
 {
   "cmake.exportCompileCommands": true,
+  "cmake.buildDirectory": "${workspaceFolder}/../../build/r3",
   "C_Cpp.default.compileCommands": "${workspaceFolder}/../../build/r3/compile_commands.json"
 }

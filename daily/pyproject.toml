@@ -7,6 +7,12 @@ dependencies = [
     "numpy>=2.0",
     "matplotlib>=3.9",
     "pytest>=8.0",
+    "scipy>=1.18.1",
+    "roboticstoolbox-python[swift]>=1.5.0",
+    "pin",
+    "modern-robotics>=1.1.1",
+    "mujoco>=4.0.0",
+    "screws[coppelia]>=0.10.0",
 ]
 
 [tool.uv]

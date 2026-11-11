@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "== Python: r1-robomath =="
-(cd projects/r1-robomath && env -u PYTHONPATH -u PYTEST_PLUGINS uv run pytest -q)
+./scripts/py.sh run --locked --directory projects/r1-robomath pytest -q
 
 echo "== C++: r3-minilinalg =="
 cmake -S projects/r3-minilinalg -B build/r3 \

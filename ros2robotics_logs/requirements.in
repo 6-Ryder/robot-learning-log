@@ -1,0 +1,9 @@
+# Ubuntu 22.04 / system Python 3.10; ROS packages remain managed by apt.
+numpy==1.26.4
+scipy==1.15.3
+opencv-python==4.10.0.84
+torch==2.12.1
+onnxruntime-gpu==1.23.2
+pymoveit2==5.1.0
+pytest==7.4.4
+debugpy==1.8.22

@@ -6,10 +6,15 @@ set -euo pipefail
 PYTHON="$HOME/.venvs/ros-humble/bin/python"
 WS="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 
-unset PYTHONPATH PYTHONHOME VIRTUAL_ENV
-exec bash --noprofile --norc -c '
+unset PYTHONPATH PYTHONHOME VIRTUAL_ENV PYTEST_PLUGINS
+export PYTHONNOUSERSITE=1
+# 优先使用本机统一机器人入口；新机器也可直接使用标准 Humble 安装。
+runner=(bash --noprofile --norc -c 'source /opt/ros/humble/setup.bash; exec "$@"' _)
+if command -v robot-tools >/dev/null 2>&1; then
+  runner=(robot-tools ros)
+fi
+exec "${runner[@]}" bash --noprofile --norc -c '
   set -e
-  source /opt/ros/humble/setup.bash
   if [[ -f "$1" ]]; then
     source "$1"
   fi

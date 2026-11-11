@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": true,
+        "path": ["${workspaceFolder}/projects/r3-minilinalg/include"]
+      },
+      "includePath": [
+        "${workspaceFolder}/projects/r3-minilinalg/include"
+      ],
+      "name": "minilinalg",
+      "compileCommands": "${workspaceFolder}/build/r3/compile_commands.json",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "gnu11",
+      "cppStandard": "c++20"
+    }
+  ],
+  "version": 4
+}
