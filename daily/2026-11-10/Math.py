@@ -1,5 +1,6 @@
 import numpy as np
 import spatialmath as sm
+from spatialmath import SE3
 
 
 #Numpy方法
@@ -48,3 +49,11 @@ print("cross = \n",cross)
 #Inverse 
 M_inv = np.linalg.inv(M)
 print("M_inv = \n",M_inv)
+
+
+#其他工具
+#双变量反正切函数
+theta = np.arctan2(p2[1], p2[0])
+alpha = np.arctan2(a[1], b[2])
+print("theta = \n",theta)
+print("alpha = \n",alpha)

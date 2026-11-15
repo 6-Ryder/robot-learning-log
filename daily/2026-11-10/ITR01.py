@@ -1,10 +1,9 @@
 import numpy as np
-import roboticstoolbox.models.URDF as Panda
+from spatialmath import SO3,SE3
+from spatialmath.base import rpy2r, tr2rpy
 import roboticstoolbox as rtb
-import swift
-from spatialmath import SE3
 
-panda = Panda.Panda()
+
 
 
 
